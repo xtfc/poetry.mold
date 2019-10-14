@@ -16,6 +16,10 @@ recipes:
     help: "Update project dependencies"
     command: ["poetry", "update"]
 
+  setup:
+    help: "Generate setup.py using dephell"
+    command: ["dephell", "deps", "convert"]
+
   reqs:
     help: "Lock dependencies to requirements.txt"
     type: "sh"
