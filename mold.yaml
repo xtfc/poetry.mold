@@ -26,8 +26,6 @@ recipes:
     help: "Lock dependencies to requirements.txt"
     type: "sh"
     script: |
-      poetry export -f requirements.txt -o requirements.txt
-      poetry export -f requirements.txt -o requirements-dev.txt --dev
+      poetry export -f requirements.txt -o requirements.txt --without-hashes
+      poetry export -f requirements.txt -o requirements-dev.txt --dev --without-hashes
       sed -i -e 's/^\-e //' requirements.txt requirements-dev.txt
-      sed -ni -e '/--hash/!p' requirements.txt requirements-dev.txt
-      sed -i -e 's/ \\$//' requirements.txt requirements-dev.txt
