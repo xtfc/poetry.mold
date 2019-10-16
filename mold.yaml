@@ -18,7 +18,9 @@ recipes:
 
   setup:
     help: "Generate setup.py using dephell"
-    command: ["poetry", "run", "dephell", "deps", "convert"]
+    type: "sh"
+    script: |
+      poetry run dephell deps convert --from poetry --to-format setuppy --to-path setup.py
 
   reqs:
     help: "Lock dependencies to requirements.txt"
@@ -26,3 +28,6 @@ recipes:
     script: |
       poetry export -f requirements.txt -o requirements.txt
       poetry export -f requirements.txt -o requirements-dev.txt --dev
+      sed -i -e 's/^\-e //' requirements.txt requirements-dev.txt
+      sed -ni -e '/--hash/!p' requirements.txt requirements-dev.txt
+      sed -i -e 's/ \\$//' requirements.txt requirements-dev.txt
