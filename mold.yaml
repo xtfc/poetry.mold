@@ -1,4 +1,4 @@
-verison: "0.5"
+version: "0.5"
 
 includes:
   - url: "github.com/xtfc/std.mold"
