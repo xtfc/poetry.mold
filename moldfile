@@ -1,0 +1,28 @@
+version "0.6"
+
+recipe install {
+  help "Install project dependencies"
+  $ "poetry install --no-dev"
+}
+
+recipe install-dev {
+  help "Install development dependencies"
+  $ "poetry install"
+}
+
+recipe update {
+  help "Update project dependencies"
+  $ "poetry update"
+}
+
+recipe setup {
+  help "Generate setup.py using dephell"
+  $ "poetry run dephell deps convert --from poetry --to-format setuppy --to-path setup.py"
+}
+
+recipe reqs {
+  help "Lock dependencies to requirements.txt"
+  $ "poetry export -f requirements.txt -o requirements.txt --without-hashes"
+  $ "poetry export -f requirements.txt -o requirements-dev.txt --dev --without-hashes"
+  $ "sed -i -e 's/^\\-e //' requirements.txt requirements-dev.txt"
+}
