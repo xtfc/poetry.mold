@@ -1,5 +1,12 @@
 version "0.6"
 
+recipe get {
+  help "Install poetry"
+  if unix {
+    $ "sh -c 'curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python'"
+  }
+}
+
 recipe install {
   help "Install project dependencies"
   $ "poetry install --no-dev"
