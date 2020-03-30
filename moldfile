@@ -22,9 +22,11 @@ recipe update {
   $ "poetry update"
 }
 
-recipe setup {
-  help "Generate setup.py using dephell"
-  $ "poetry run dephell deps convert --from poetry --to-format setuppy --to-path setup.py"
+if unix {
+  recipe setup {
+    help "Generate setup.py using dephell"
+    $ "poetry run dephell deps convert --from poetry --to-format setuppy --to-path setup.py"
+  }
 }
 
 recipe reqs {
